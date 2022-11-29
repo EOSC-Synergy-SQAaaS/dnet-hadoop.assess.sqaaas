@@ -1,0 +1,66 @@
+config:
+  credentials: []
+  project_repos:
+    code-repo.d4science.org/D-Net/dnet-hadoop:
+      branch: master
+      repo: https://code-repo.d4science.org/D-Net/dnet-hadoop
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.7
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-hadoop git:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-myrtle-owl.sh
+        container: qc.acc_paltry-orchid-guppy
+  QC.Doc:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-hadoop find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-pink-newt.sh
+        container: qc.doc_paltry-chestnut-badger
+      code-repo.d4science.org/D-Net/dnet-hadoop git:
+        commands:
+        - /usr/bin/env sh .sqa/script.paltry-violet-olm.sh
+        container: qc.doc_hasty-razzmatazz-magpie
+      code-repo.d4science.org/D-Net/dnet-hadoop markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.squeaky-lemon-capybara.sh
+        container: qc.doc_cozy-apricot-dolphin
+  QC.Lic:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-hadoop licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-bistre-cheetah.sh
+        container: qc.lic_lumpy-linen-spaniel
+  QC.Sec:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-hadoop bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.whiny-alizarin-boar.sh
+        container: qc.sec_flabby-tangerine-quoll
+  QC.Sty:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-hadoop checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.ready-lavender-audemer.sh
+        container: qc.sty_blurry-indigo-goat
+      code-repo.d4science.org/D-Net/dnet-hadoop flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.homey-salmon-hedgehog.sh
+        container: qc.sty_cranky-carmine-ladybird
+      code-repo.d4science.org/D-Net/dnet-hadoop jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.crappy-wisteria-oriole.sh
+        container: qc.sty_lovely-razzmatazz-starfish
+  QC.Ver:
+    repos:
+      code-repo.d4science.org/D-Net/dnet-hadoop get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.cranky-taupe-frise.sh
+        container: qc.ver_fuzzy-fuchsia-cougar
+timeout: 1800
